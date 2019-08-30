@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.heeexy.example.dao.PublicInfoDao">
+    <insert id="addInfo" parameterType="com.alibaba.fastjson.JSONObject">
+        insert into public_info
+        (roleId,userName,nickName,title,content,createTime,updateTime)
+                values (#{roleId},#{userName},#{nickName},#{title},#{content},#{createTime},#{updateTime})
+    </insert>
+</mapper>
