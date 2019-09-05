@@ -13,7 +13,7 @@ public class CommunityInfo {
     private int house;
     private String wuyetel;
     private String wuyeName;
-
+    private String detail;
     public int getId() {
         return id;
     }
@@ -84,6 +84,14 @@ public class CommunityInfo {
 
     public void setWuyeName(String wuyeName) {
         this.wuyeName = wuyeName;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
     @Override

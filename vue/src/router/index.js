@@ -45,6 +45,22 @@ export const asyncRouterMap = [
   {
     path: '/system',
     component: Layout,
+    redirect: '/system/publicInfo',
+    name: '功能模块',
+    meta: {title: '功能模块', icon: 'tree'},
+    children: [
+      {
+        path: 'publicInfo',
+        name: '公共信息管理',
+        component: _import('publicInfo/publicInfo'),
+        meta: {title: '公共信息管理', icon: 'gd'},
+        menu: 'publicInfo'
+      },
+    ]
+  },
+  {
+    path: '/system',
+    component: Layout,
     redirect: '/system/community',
     name: '功能模块',
     meta: {title: '功能模块', icon: 'tree'},

@@ -2,9 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.heeexy.example.dao.PublicInfoDao">
-    <insert id="addInfo" parameterType="com.alibaba.fastjson.JSONObject">
+    <insert id="addInfo" useGeneratedKeys="true" parameterType="com.alibaba.fastjson.JSONObject">
         insert into public_info
         (roleId,userName,nickName,title,content,createTime,updateTime)
-                values (#{roleId},#{userName},#{nickName},#{title},#{content},#{createTime},#{updateTime})
+                values (#{roleId},#{userName},#{nickName},#{title},#{content},NOW(),#{updateTime})
     </insert>
+    <select id="countPulicInfo" resultType="Integer">
+        SELECT count(0)
+        FROM public_info w
+    </select>
+    <select id="listPublicInfo" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+            w.id                                      id,
+            w.roleId                                  userName,
+            w.nickName                                nickName,
+            w.title                                   title,
+            w.content                                 content,
+            date_format(w.createTime, '%Y.%m.%d %T') createTime
+        FROM public_info w
+        ORDER BY w.id DESC
+        LIMIT #{offSet}, #{pageRow}
+    </select>
+    <update id="updatePublicInfo" parameterType="com.alibaba.fastjson.JSONObject">
+        UPDATE public_info
+        SET
+            title = #{title},
+            content = #{content},
+            updateTime = #{updateTime}
+        WHERE id = #{id}
+    </update>
+    <delete id="deleteInfo"  parameterType="com.alibaba.fastjson.JSONObject">
+        delete from public_info
+        where id = #{id}
+    </delete>
 </mapper>

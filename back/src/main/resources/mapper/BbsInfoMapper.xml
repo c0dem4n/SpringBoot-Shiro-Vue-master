@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.heeexy.example.dao.AirquailtyDao">
+    <select id="listbbs" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT count(0)
+        FROM bbs
+        order by id
+        LIMIT #{offSet}, #{pageRow}
+    </select>
+    <select id="countbbs" resultType="Integer">
+        SELECT count(0)
+        FROM bbs
+    </select>
+    <insert id="addInfo" parameterType="com.alibaba.fastjson.JSONObject">
+        insert into bbs
+        (roleId,
+        nickName,
+        title,
+        content,
+        replyNum,
+         createTime)
+        values (#{roleId},#{nickName},#{title},#{content},#{replyNum},now())
+    </insert>
+    <insert id="replyInfo" parameterType="com.alibaba.fastjson.JSONObject">
+        INSERT INTO bbsreply
+        (commentId,nickName,replyInfo,createTime)values (#{commentId},#{nickName},#{replyInfo},now())
+    </insert>
+</mapper>
