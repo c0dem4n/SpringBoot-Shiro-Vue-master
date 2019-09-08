@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.heeexy.example.dao.ApprovelDao">
+    <insert id="addApprovel" parameterType="com.alibaba.fastjson.JSONObject">
+        insert into approvel
+        (nickName,title,content,createTime,status)
+        values (#{nickName},#{title},#{content},now(),0)
+    </insert>
+    <insert id="replyApprovel" parameterType="com.alibaba.fastjson.JSONObject">
+        insert into approvel
+        (reply,replyTime)
+                values (#{reply},now())
+    </insert>
+    <update id="updateApprovel" parameterType="com.alibaba.fastjson.JSONObject">
+        update approvel
+        set status=1
+        where id=#{id}
+    </update>
+    <select id="countApprovel" resultType="integer">
+        SELECT count(0)
+        from  approvel
+    </select>
+    <select id="listApprovel" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT * FROM approvel
+        order by id desc
+    </select>
+</mapper>
